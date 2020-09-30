@@ -58,26 +58,6 @@ public class KDelete {
                 currentK = Math.min(k + j, length - 1);
             }
         }
-
-
-//        while (k >= 0) {
-//            if (k == 0) {
-//                res.append(primeStr);
-//                break;
-//            }
-//            if (primeStr.length() <= k) {
-//                break;
-//            }
-//            int maxIndex = 1;
-//            for (int i = 0; i <= k; i++) {
-//                if (primeStr.charAt(i) > primeStr.charAt(maxIndex)) {
-//                    maxIndex = i;
-//                }
-//            }
-//            res.append(primeStr.charAt(maxIndex));
-//            primeStr = new StringBuilder(primeStr.substring(maxIndex + 1));
-//            k -= maxIndex;
-//        }
         System.out.println(res);
     }
     static class InputReader {
