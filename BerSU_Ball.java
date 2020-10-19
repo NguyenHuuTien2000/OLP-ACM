@@ -30,17 +30,23 @@ public class BerSU_Ball {
 		girls.sort(Integer::compareTo);
 		
 		int pairs = 0;
+		int i = 0;
+		int j = 0;
 		
-		for (int i = 0; i < boys.size();i++) {
-			for (int j = 0; j < girls.size(); j++) {
-				if (Math.abs(boys.get(i) - girls.get(j)) <= 1) {
-					pairs++;
-					boys.remove(i);
-					girls.remove(j);
-					j--;
+		while(i < boys.size() && j < girls.size()) {
+			if (Math.abs(boys.get(i) - girls.get(j)) <= 1) {
+				pairs++;
+				i++;
+				j++;
+			} else {
+				if (boys.get(i) > girls.get(j)) {
+					j++;
+				} else {
+					i++;
 				}
 			}
 		}
+		
 		System.out.println(pairs);
 		
 	}
