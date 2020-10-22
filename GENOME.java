@@ -18,45 +18,64 @@ public class GENOME {
 		int n = reader.nextInt();
 		int k = reader.nextInt();
 		
-		Map<Integer, Integer>[] mapArr = new HashMap[31];
+		Map<Long, Integer>[] mapArr = new HashMap[31];
 		for (int i = 0; i < 31; i++) {
 			mapArr[i] = new HashMap<>();
 		}
+		
 		int maxLength = -1;
 
 		for (int i = 0; i < n; i++) {
 			String dnaStr = reader.nextLine();
 			
-			Set<Integer>[] exist = new HashSet[31];
+			Set<Long>[] check = new HashSet[dnaStr.length() + 1];
 			for (int j = 1; j <= dnaStr.length(); ++j) {
-				exist[j] = new HashSet<>();
+				check[j] = new HashSet<>();
 			}
 			
-			for (int a = 0; a < 30; a++) {
-				for (int b = a + 1; b <= 30; b++) {
-					String dna = dnaStr.substring(a,b);
+			for (int a = 0; a < dnaStr.length(); a++) {
+				
+				long code = charCode(dnaStr.charAt(a))*4 + charCode(dnaStr.charAt(a));
+
+				for (int b = a; b < dnaStr.length(); b++) {
+					code = code*4 + charCode(dnaStr.charAt(b));
 					
-					int code = dna.hashCode();
-					if (exist[dna.length()].contains(code)) {
-						continue;
+					int length = b - a + 1;
+					
+					if (!check[length].contains(code)) {
+						
+						check[length].add(code);
+						
+						Integer value = mapArr[length].get(code);
+						if (value == null) {
+							value = 0;
+						}
+						value++;
+						if (value == k) {
+							maxLength = Math.max(length, maxLength);
+						} else {
+							mapArr[length].put(code,value);
+						}
 					}
-					exist[dna.length()].add(code);
-					Integer value = mapArr[dna.length()].get(code);
-					if (value == null) {
-						value = 0;
-					}
-					value++;
-					if (value >= k) {
-						maxLength = Math.max(dna.length(), maxLength);
-					} else {
-						mapArr[dna.length()].put(code,value);
-					}
+	
 				}
 			}
 		}
 		
 		System.out.println(maxLength);
 	
+	}
+	static int charCode(char c) {
+		if (c == 'A') {
+			return 0;
+		}
+		if (c == 'T') {
+			return 1;
+		}
+		if (c == 'G') {
+			return 2;
+		}
+		return 3;
 	}
 	
 	
