@@ -28,7 +28,7 @@ public class GENOME {
 			String dnaStr = reader.nextLine();
 			
 			Set<Integer>[] exist = new HashSet[31];
-			for (int j = 1; boo <= dnaStr.length(); ++j) {
+			for (int j = 1; j <= dnaStr.length(); ++j) {
 				exist[j] = new HashSet<>();
 			}
 			
