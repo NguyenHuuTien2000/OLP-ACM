@@ -28,8 +28,8 @@ public class GENOME {
 			String dnaStr = reader.nextLine();
 			
 			Set<Integer>[] exist = new HashSet[31];
-			for (int boo = 1; boo <= dnaStr.length(); ++boo) {
-				exist[boo] = new HashSet<>();
+			for (int j = 1; boo <= dnaStr.length(); ++j) {
+				exist[j] = new HashSet<>();
 			}
 			
 			for (int a = 0; a < 30; a++) {
